@@ -2,7 +2,7 @@
   "name": "Loan PWA - Tamil Nadu",
   "short_name": "LoanPWA",
   "description": "Fast & Easy Loans Across Tamil Nadu - Personal, Business, Home, Vehicle Loans",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#16a34a",

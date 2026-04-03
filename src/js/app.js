@@ -9,8 +9,8 @@
 async function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register('/service-worker.js', {
-        scope: '/'
+      const registration = await navigator.serviceWorker.register('service-worker.js', {
+        scope: './'
       });
       console.log('[SW] Service Worker registered:', registration.scope);
       
@@ -249,7 +249,9 @@ if (loanForm) {
     
     try {
       // Send data to backend API
-      const response = await fetch('/api/lead', {
+      // Note: On GitHub Pages, this will fail since it's static hosting only
+      // The backend server (server.js) needs to be deployed separately
+      const response = await fetch('api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

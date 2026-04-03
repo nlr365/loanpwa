@@ -1,17 +1,18 @@
 // Service Worker for Loan PWA - Offline caching and installability
 const CACHE_NAME = 'loan-pwa-v1.0.0';
-const OFFLINE_URL = '/offline.html';
+const OFFLINE_URL = 'offline.html';
 
 // Resources to pre-cache on service worker install
+// Using relative paths for GitHub Pages compatibility
 const PRECACHE_RESOURCES = [
-  '/',
-  '/index.html',
-  '/src/css/style.css',
-  '/src/js/app.js',
-  '/offline.html',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  './',
+  './index.html',
+  './src/css/style.css',
+  './src/js/app.js',
+  './offline.html',
+  './manifest.json',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png'
 ];
 
 // Install event - cache all static resources
