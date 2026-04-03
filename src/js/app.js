@@ -9,8 +9,8 @@
 async function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register('./service-worker.js', {
-        scope: './'
+      const registration = await navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/'
       });
       console.log('[SW] Service Worker registered:', registration.scope);
       
@@ -218,66 +218,70 @@ const submitBtn = document.getElementById('submitBtn');
 const formMessage = document.getElementById('formMessage');
 
 if (loanForm) {
-  loanForm.addEventListener('submit', async (e) => {
+  loanForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Get form data
-    const formData = {
-      name: document.getElementById('name').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      loanType: document.getElementById('loanType').value,
-      amount: document.getElementById('amount').value.trim(),
-      source: 'website' // Track where the lead came from
-    };
-    
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const loanType = document.getElementById('loanType').value;
+    const amount = document.getElementById('amount').value.trim();
+
     // Validate form data
-    if (!formData.name || !formData.phone || !formData.loanType || !formData.amount) {
+    if (!name || !phone || !loanType || !amount) {
       showFormMessage('Please fill in all required fields.', 'error');
       return;
     }
-    
+
     // Validate phone number (basic validation for Indian numbers)
     const phoneRegex = /^[\+]?[0-9\s\-]{10,15}$/;
-    if (!phoneRegex.test(formData.phone)) {
+    if (!phoneRegex.test(phone)) {
       showFormMessage('Please enter a valid phone number.', 'error');
       return;
     }
-    
-    // Disable submit button and show loading state
+
+    // Format loan type display name
+    const loanTypeNames = {
+      'personal': 'Personal Loan',
+      'business': 'Business Loan',
+      'home': 'Home Loan',
+      'mortgage': 'Mortgage Loan',
+      'vehicle': 'Vehicle Loan'
+    };
+    const loanTypeDisplay = loanTypeNames[loanType] || loanType;
+
+    // Build WhatsApp message
+    const whatsappMessage = `📋 *New Loan Application*
+
+👤 *Name:* ${name}
+📱 *Phone:* ${phone}
+💰 *Loan Type:* ${loanTypeDisplay}
+💵 *Amount:* ₹${amount}
+
+I'm interested in applying for this loan. Please contact me with next steps. Thank you!`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // Business WhatsApp number
+    const businessNumber = '919500526217';
+
+    // Show success message
+    showFormMessage('✅ Opening WhatsApp to send your application...', 'success');
+
+    // Disable button briefly
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    
-    try {
-      // Send data to backend API
-      // Note: On GitHub Pages, this will fail since it's static hosting only
-      // The backend server (server.js) needs to be deployed separately
-      const response = await fetch('api/lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok) {
-        showFormMessage('✅ Application submitted successfully! We\'ll contact you within 24 hours.', 'success');
-        loanForm.reset();
-        
-        // Optionally send analytics event
-        console.log('[Form] Lead submitted:', result.leadId);
-      } else {
-        throw new Error(result.message || 'Failed to submit application');
-      }
-    } catch (error) {
-      console.error('[Form] Submission error:', error);
-      showFormMessage('❌ Failed to submit application. Please try again or call us directly.', 'error');
-    } finally {
-      // Re-enable submit button
+    submitBtn.textContent = 'Redirecting to WhatsApp...';
+
+    // Open WhatsApp after short delay
+    setTimeout(() => {
+      window.open(`https://wa.me/${businessNumber}?text=${encodedMessage}`, '_blank');
+
+      // Reset form after redirect
+      loanForm.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application';
-    }
+    }, 500);
   });
 }
 
