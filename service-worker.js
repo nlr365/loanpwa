@@ -3,7 +3,7 @@ const CACHE_NAME = 'loan-pwa-v1.0.0';
 const OFFLINE_URL = 'offline.html';
 
 // Resources to pre-cache on service worker install
-// Using relative paths for GitHub Pages compatibility
+// Using root-level paths for GitHub Pages
 const PRECACHE_RESOURCES = [
   './',
   './index.html',
