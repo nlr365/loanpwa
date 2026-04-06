@@ -1,0 +1,31 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def flutterVersionCode = '2'
+def flutterVersionName = '0.0.2'
+
+android {
+    namespace "com.tnloanagency.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.tnloanagency.app"
+        minSdk 21
+        targetSdk 34
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
