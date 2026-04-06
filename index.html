@@ -2,323 +2,634 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="Fast and easy loans across Tamil Nadu. Personal, Business, Home, Mortgage, and Vehicle loans with lower rates and trusted service.">
-  <meta name="theme-color" content="#16a34a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Loan PWA">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
-  <title>Loan PWA - Financial Freedom Across Tamil Nadu</title>
-  <link rel="stylesheet" href="src/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TN Loan Agency - Get the right loan right now in Tamil Nadu. Personal, Business, Home, Mortgage, and Vehicle loans.">
+  <meta name="theme-color" content="#0F4C5C">
+  <title>TN Loan Agency | Tamil Nadu's Trusted Finance Partner</title>
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiVE4gTG9hbiBBZ2VuY3kiLCJzaG9ydF9uYW1lIjoiVE5MTEEiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI0Y4RjlGQSIsInRoZW1lX2NvbG9yIjoiIzBGNEM1QyJ9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --brand: #0F4C5C;
+      --accent: #20C997;
+      --text: #333;
+      --light: #F8F9FA;
+      --white: #fff;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    nav .logo span { color: var(--accent); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-links .apply-btn {
+      background: var(--accent);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    .nav-links .apply-btn:hover { color: white; opacity: 0.9; }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--brand);
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 7rem 0 3rem;
+      background: var(--white);
+      border-bottom: 1px solid #eee;
+    }
+
+    .hero-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: var(--brand);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-green {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(32,201,151,0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 2px solid var(--brand);
+      color: var(--brand);
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover { background: var(--brand); color: white; }
+
+    .hero-img {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-img img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(32,201,151,0.4);
+      animation: heroFloat 3s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .hero-badge-1 { top: 15%; left: 10%; }
+    .hero-badge-2 { bottom: 30%; right: 10%; animation-delay: 1.5s; }
+
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 5rem 0;
+      background: var(--light);
+    }
+
+    .services-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--brand);
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+
+    .service-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    /* FORM */
+    .form-section {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .form-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .form-info h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--brand);
+      margin-bottom: 1rem;
+    }
+
+    .form-info p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .form-info ul {
+      list-style: none;
+    }
+
+    .form-info ul li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .form-info ul li i { color: var(--accent); }
+
+    .form-card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .form-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-card > p {
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+
+    .field { margin-bottom: 1rem; }
+
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--brand);
+      margin-bottom: 0.4rem;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1ba87e;
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--brand);
+      color: white;
+      padding: 4rem 0 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-about h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-about h3 span { color: var(--accent); }
+
+    .footer-about p { opacity: 0.7; line-height: 1.7; }
+
+    .footer-links h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .footer-links a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-links a i { width: 18px; margin-right: 0.4rem; }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.85rem;
+      opacity: 0.5;
+    }
+
+    .footer-bottom .disc {
+      color: var(--accent);
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .menu-btn { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem 5%;
+        gap: 1rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero h1 { font-size: 2rem; }
+
+      .services-grid { grid-template-columns: 1fr 1fr; }
+
+      .form-wrap { grid-template-columns: 1fr; gap: 2rem; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAVIGATION -->
-  <header class="header">
-    <div class="header-container">
-      <div class="logo">
-        <div class="logo-icon">₹</div>
-        <span class="logo-text">LoanPWA</span>
-      </div>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="nav-menu" id="navMenu">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#loan-uses" class="nav-link">Loan Uses</a>
-        <a href="#personal-loans" class="nav-link">Personal Loans</a>
-        <a href="#contact" class="nav-link">Contact Us</a>
-        <a href="#lead-form" class="btn btn-primary">Get Started</a>
-      </nav>
+
+  <nav>
+    <a href="#" class="logo">TN <span>LOAN</span> AGENCY</a>
+    <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <div class="nav-links" id="navLinks">
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#form" class="apply-btn">Apply Now</a>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-headline">The Right Loan For Your Financial Freedom</h1>
-        <p class="hero-subheadline">If you're looking to make a major change in your life, it's time to take control of your finances.</p>
-        <a href="#lead-form" class="btn btn-cta btn-large">Get Your Loan Now</a>
-      </div>
-      <div class="trust-bar">
-        <span class="trust-item">✓ Trusted by 10,000+ Customers</span>
-        <span class="trust-item">✓ RBI Registered</span>
-        <span class="trust-item">✓ All Over Tamil Nadu</span>
-      </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="features">
-      <div class="container">
-        <h2 class="section-title">How Our Loan Works</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📋</div>
-            <h3 class="feature-title">No Initial Credit Check</h3>
-            <p class="feature-desc">Get started without worrying about your credit score. We evaluate your complete financial profile.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3 class="feature-title">Free Consultation</h3>
-            <p class="feature-desc">Speak with our experts for free. We'll guide you through the best loan options for your needs.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">✅</div>
-            <h3 class="feature-title">No Obligation To Sign Up</h3>
-            <p class="feature-desc">Explore your options with zero commitment. Apply only when you're ready and comfortable.</p>
-          </div>
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Get the Right <span>Loan</span> Right Now</h1>
+        <p>Banking & Non-Banking Partners | New & Used Finance | Takeover Available</p>
+        <div class="hero-btns">
+          <a href="#form" class="btn-green"><i class="fab fa-whatsapp"></i> Apply Now</a>
+          <a href="#services" class="btn-outline"><i class="fas fa-arrow-down"></i> View Services</a>
         </div>
       </div>
-    </section>
-
-    <!-- VALUE PROPOSITIONS (ORANGE CARDS) -->
-    <section id="loan-uses" class="value-props">
-      <div class="container">
-        <h2 class="section-title">Why Choose Us?</h2>
-        <div class="value-grid">
-          <div class="value-card">
-            <div class="value-icon">📉</div>
-            <h3 class="value-title">Lower Rates</h3>
-            <p class="value-desc">Competitive interest rates starting from 10.5% p.a. We negotiate the best deals for you.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🏆</div>
-            <h3 class="value-title">Trusted Brand</h3>
-            <p class="value-desc">Over 5 years of service excellence across Tamil Nadu with 10,000+ satisfied customers.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">⚡</div>
-            <h3 class="value-title">Speed</h3>
-            <p class="value-desc">Loan approval in as fast as 24 hours. Quick disbursal when you need it most.</p>
-          </div>
-        </div>
+      <div class="hero-img">
+        <img src="my-img-aaste/B1.jpg" alt="TN Loan Agency">
+        <span class="hero-badge hero-badge-1"><i class="fas fa-check-circle"></i> Quick Approval</span>
+        <span class="hero-badge hero-badge-2"><i class="fas fa-shield-alt"></i> 100% Secure</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- LOAN TYPES SECTION -->
-    <section id="personal-loans" class="loan-types">
-      <div class="container">
-        <h2 class="section-title">All Over Tamil Nadu - Loans Available</h2>
-        <p class="section-subtitle">Banking & Non-Banking Options Available</p>
-        <div class="loan-grid">
-          <div class="loan-card">
-            <div class="loan-icon">💰</div>
-            <h3 class="loan-title">Personal Loan</h3>
-            <p class="loan-desc">Flexible loans for your personal needs - medical, travel, education, or emergencies.</p>
-            <ul class="loan-features">
-              <li>₹50,000 to ₹25 Lakhs</li>
-              <li>No collateral required</li>
-              <li>Quick approval in 24hrs</li>
-            </ul>
-          </div>
-          <div class="loan-card">
-            <div class="loan-icon">💼</div>
-            <h3 class="loan-title">Business Loan</h3>
-            <p class="loan-desc">Grow your business with customized financing solutions for expansion and working capital.</p>
-            <ul class="loan-features">
-              <li>₹2 Lakhs to ₹50 Lakhs</li>
-              <li>Flexible repayment terms</li>
-              <li>Minimal documentation</li>
-            </ul>
-          </div>
-          <div class="loan-card">
-            <div class="loan-icon">🏠</div>
-            <h3 class="loan-title">Home Loan</h3>
-            <p class="loan-desc">Make your dream home a reality with low interest rates and long repayment tenure.</p>
-            <ul class="loan-features">
-              <li>Up to 90% of property value</li>
-              <li>Tenure up to 30 years</li>
-              <li>Tax benefits available</li>
-            </ul>
-          </div>
-          <div class="loan-card">
-            <div class="loan-icon">🏦</div>
-            <h3 class="loan-title">Mortgage Loan</h3>
-            <p class="loan-desc">Unlock the value of your property with loan against mortgage for any purpose.</p>
-            <ul class="loan-features">
-              <li>₹5 Lakhs to ₹5 Crores</li>
-              <li>Lower interest rates</li>
-              <li>Flexible end-use</li>
-            </ul>
-          </div>
-          <div class="loan-card">
-            <div class="loan-icon">🚗</div>
-            <h3 class="loan-title">Vehicle Loan</h3>
-            <p class="loan-desc">New or used, buy your dream vehicle with our competitive auto loan solutions.</p>
-            <ul class="loan-features">
-              <li>New & Used vehicles</li>
-              <li>Loan takeover available</li>
-              <li>Up to 100% on-road funding</li>
-            </ul>
-          </div>
-        </div>
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-inner">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+      <div class="service-card" onclick="pick('Personal Loan')">
+        <i class="fas fa-user"></i>
+        <h3>Personal Loan</h3>
       </div>
-    </section>
-
-    <!-- STEPS GUIDE SECTION -->
-    <section class="steps">
-      <div class="container">
-        <h2 class="section-title">Getting Started is Easy</h2>
-        <div class="steps-container">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-icon">📞</div>
-            <h3 class="step-title">Call The Number On This Site</h3>
-            <p class="step-desc">Reach us at <a href="tel:+919500526217" class="step-link">+91 95005 26217</a> or WhatsApp us directly</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-icon">📝</div>
-            <h3 class="step-title">Apply For Your Loan</h3>
-            <p class="step-desc">Fill out our simple form below with your details and loan requirements</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-icon">😊</div>
-            <h3 class="step-title">Get Back To Your Life</h3>
-            <p class="step-desc">Our team handles the rest. Get approved and receive your loan amount quickly</p>
-          </div>
-        </div>
+      <div class="service-card" onclick="pick('Business Loan')">
+        <i class="fas fa-briefcase"></i>
+        <h3>Business Loan</h3>
       </div>
-    </section>
+      <div class="service-card" onclick="pick('Home Loan')">
+        <i class="fas fa-home"></i>
+        <h3>Home Loan</h3>
+      </div>
+      <div class="service-card" onclick="pick('Mortgage Loan')">
+        <i class="fas fa-building"></i>
+        <h3>Mortgage Loan</h3>
+      </div>
+      <div class="service-card" onclick="pick('Vehicle Loan')">
+        <i class="fas fa-car"></i>
+        <h3>Vehicle Loan</h3>
+      </div>
+    </div>
+    </div>
+  </section>
 
-    <!-- LEAD CAPTURE FORM -->
-    <section id="lead-form" class="lead-form">
-      <div class="container">
-        <h2 class="section-title">Apply For Your Loan Now</h2>
-        <p class="section-subtitle">Fill in your details and we'll get back to you within 24 hours</p>
-        <form id="loanForm" class="form-container">
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your full name" autocomplete="name">
+  <!-- FORM -->
+  <section class="form-section" id="form">
+    <div class="form-inner">
+    <div class="form-wrap">
+      <div class="form-info">
+        <h2>Connect With Us</h2>
+        <p>Share your loan details and we will get back to you on WhatsApp. Simple, no hassle.</p>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Free consultation</li>
+          <li><i class="fas fa-check-circle"></i> Response within 2 hours</li>
+          <li><i class="fas fa-check-circle"></i> Serving all of Tamil Nadu</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Your Details</h3>
+        <p>We only need basic info to get started.</p>
+        <form id="leadForm">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
           </div>
-          <div class="form-group">
-            <label for="phone">WhatsApp Number *</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" pattern="[\+]?[0-9\s\-]{10,15}" autocomplete="tel">
+          <div class="field">
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="Enter your mobile number" required>
           </div>
-          <div class="form-group">
-            <label for="loanType">Loan Type *</label>
-            <select id="loanType" name="loanType" required>
-              <option value="">Select Loan Type</option>
-              <option value="personal">Personal Loan</option>
-              <option value="business">Business Loan</option>
-              <option value="home">Home Loan</option>
-              <option value="mortgage">Mortgage Loan</option>
-              <option value="vehicle">Vehicle Loan (New/Used/Takeover)</option>
+          <div class="field">
+            <label>Loan Type</label>
+            <select id="loan" required>
+              <option value="" disabled selected>Select loan type</option>
+              <option value="Personal Loan">Personal Loan</option>
+              <option value="Business Loan">Business Loan</option>
+              <option value="Home Loan">Home Loan</option>
+              <option value="Mortgage Loan">Mortgage Loan</option>
+              <option value="Vehicle Loan">Vehicle Loan</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="amount">Loan Amount (₹) *</label>
-            <input type="text" id="amount" name="amount" required placeholder="e.g., 5,00,000" pattern="[\d,]+">
-          </div>
-          <button type="submit" class="btn btn-cta btn-full" id="submitBtn">Submit Application</button>
-          <p class="form-note">🔒 Your information is secure and will not be shared</p>
-          <div id="formMessage" class="form-message" style="display: none;"></div>
+          <button type="submit" class="submit-btn">
+            <i class="fab fa-whatsapp"></i> Send on WhatsApp
+          </button>
         </form>
       </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <h3>Phone</h3>
-            <a href="tel:+919500526217" class="contact-link">+91 95005 26217</a>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">💬</div>
-            <h3>WhatsApp</h3>
-            <a href="https://wa.me/919500526217" target="_blank" rel="noopener noreferrer" class="contact-link">Chat on WhatsApp</a>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <h3>Email</h3>
-            <a href="mailto:nlr66438@gmail.com" class="contact-link">nlr66438@gmail.com</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA BANNER -->
-    <section class="cta-banner">
-      <div class="container">
-        <h2>Gracefully Streamline Your Finances Without The Stress And Hassle</h2>
-        <a href="#lead-form" class="btn btn-cta btn-large">Apply Now</a>
-      </div>
-    </section>
-  </main>
+    </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>LoanPWA</h3>
-          <p>Your trusted partner for all loan needs across Tamil Nadu.</p>
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>TN <span>LOAN</span> AGENCY</h3>
+          <p>Helping people across Tamil Nadu find the right loan. We work with multiple banks and NBFCs to get you the best deal. Walk in or reach out — we're here to help.</p>
         </div>
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#loan-uses">Loan Uses</a></li>
-            <li><a href="#personal-loans">Personal Loans</a></li>
-            <li><a href="#lead-form">Apply Now</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <p>📞 +91 95005 26217</p>
-          <p>📧 nlr66438@gmail.com</p>
-          <p>📍 Tamil Nadu, India</p>
+        <div class="footer-links">
+          <h4>Contact Us</h4>
+          <a href="tel:+919500526217"><i class="fas fa-phone"></i> +91 95005 26217</a>
+          <a href="https://wa.me/919500526217" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+          <a href="mailto:contact@tnloanagency.com"><i class="fas fa-envelope"></i> contact@tnloanagency.com</a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i> Serving All Over Tamil Nadu</a>
+          <a href="#"><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 7:00 PM</a>
+          <a href="#"><i class="fas fa-calendar-alt"></i> Sunday: By Appointment</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Loan PWA. All rights reserved.</p>
+        <p class="disc">SALARIES, PERSONAL - CONTACT ME DIRECTLY</p>
+        <p>&copy; 2026 TN Loan Agency. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- BOTTOM NAVIGATION (Mobile) -->
-  <nav class="bottom-nav">
-    <a href="#home" class="bottom-nav-item">
-      <span class="bottom-nav-icon">🏠</span>
-      <span class="bottom-nav-text">Home</span>
-    </a>
-    <a href="#loan-uses" class="bottom-nav-item">
-      <span class="bottom-nav-icon">💼</span>
-      <span class="bottom-nav-text">Loans</span>
-    </a>
-    <a href="#lead-form" class="bottom-nav-item">
-      <span class="bottom-nav-icon">📝</span>
-      <span class="bottom-nav-text">Apply</span>
-    </a>
-    <a href="#contact" class="bottom-nav-item">
-      <span class="bottom-nav-icon">📞</span>
-      <span class="bottom-nav-text">Contact</span>
-    </a>
-  </nav>
+  <script>
+    // Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.querySelector('i').classList.toggle('fa-bars');
+      menuBtn.querySelector('i').classList.toggle('fa-times');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.querySelector('i').classList.add('fa-bars');
+        menuBtn.querySelector('i').classList.remove('fa-times');
+      });
+    });
 
-  <!-- INSTALL PROMPT (PWA) -->
-  <div id="installPrompt" class="install-prompt" style="display: none;">
-    <div class="install-content">
-      <p>Install Loan PWA for quick access!</p>
-      <div class="install-buttons">
-        <button id="installBtn" class="btn btn-primary">Install</button>
-        <button id="dismissInstall" class="btn btn-secondary">Later</button>
-      </div>
-    </div>
-  </div>
+    // Pick service
+    function pick(name) {
+      document.getElementById('loan').value = name;
+      document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+    }
 
-  <script src="src/js/app.js"></script>
+    // WhatsApp
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const loan = document.getElementById('loan').value;
+      const msg = `Hello TN Loan Agency. I am reaching out from your digital portal. My name is ${name}. I am interested in securing a ${loan}. Please contact me at ${mobile}.`;
+      window.open(`https://wa.me/919500526217?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    // PWA
+    if ('serviceWorker' in navigator) {
+      const sw = `self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));`;
+      navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
+    }
+  </script>
 </body>
 </html>
