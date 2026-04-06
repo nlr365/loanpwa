@@ -558,6 +558,10 @@
               <option value="Vehicle Loan">Vehicle Loan</option>
             </select>
           </div>
+          <div class="field">
+            <label>Loan Amount (₹) <span style="font-weight:400;color:#999;font-size:0.8rem;">(optional)</span></label>
+            <input type="number" id="amount" placeholder="e.g. 500000">
+          </div>
           <button type="submit" class="submit-btn">
             <i class="fab fa-whatsapp"></i> Send on WhatsApp
           </button>
@@ -621,7 +625,17 @@
       const name = document.getElementById('name').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
       const loan = document.getElementById('loan').value;
-      const msg = `Hello TN Loan Agency. I am reaching out from your digital portal. My name is ${name}. I am interested in securing a ${loan}. Please contact me at ${mobile}.`;
+      const amount = document.getElementById('amount').value.trim();
+
+      const amountLine = amount ? `💵 *Amount:* ₹${amount}\n` : '';
+
+      const msg = `📋 *New Loan Application*
+
+👤 *Name:* ${name}
+📱 *Phone:* ${mobile}
+💰 *Loan Type:* ${loan}
+${amountLine}
+I'm interested in applying for this loan. Please contact me with next steps. Thank you!`;
       window.open(`https://wa.me/919500526217?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
